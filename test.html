@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/speedtest-net@2.1.6/dist/index.js"></script>
+</head>
+<body>
+    <h1>Speed Test</h1>
+    <button id="start-button">Start Test</button>
+    <p id="result"></p>
+
+    <script>
+        document.getElementById('start-button').addEventListener('click', function () {
+            const speedTest = new Speedtest();
+
+            speedTest.onupdate = (data) => {
+                document.getElementById('result').innerHTML = `
+                    Download Speed: ${data.download} Mbps<br>
+                    Upload Speed: ${data.upload} Mbps
+                `;
+            };
+
+            speedTest.start();
+        });
+    </script>
+</body>
+</html>
